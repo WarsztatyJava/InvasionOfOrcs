@@ -10,12 +10,14 @@ public class Orcs implements PossibleMoves {
     }
 
     private double orcNumberOfLives;
+    private double orcInitialPoints;
     public double orcPowerOfAttack;
     public double orcDefenceEfficiency;
 
-    public Orcs(double orcNumberOfLives) {
+    public Orcs(double orcNumberOfLives, double orcInitialPoints) {
 
         this.orcNumberOfLives = orcNumberOfLives;
+        this.orcInitialPoints=orcInitialPoints;
 
 
     }
@@ -31,8 +33,15 @@ public class Orcs implements PossibleMoves {
     @Override
     public double defense() {
         Random rand = new Random();
-        orcDefenceEfficiency = rand.nextDouble();
+        orcDefenceEfficiency = rand.nextDouble()*0.5;
         return orcDefenceEfficiency;
 
+    }
+
+    @Override
+    public double initialPointsGenerator() {
+        Random rand = new Random();
+        double finalOrcInitialPoints = rand.nextDouble()+orcInitialPoints;
+        return finalOrcInitialPoints;
     }
 }
